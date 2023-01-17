@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JavaRushProject</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="name">Name</string>
+    <string name="add_animal">add animal</string>
+</resources>
