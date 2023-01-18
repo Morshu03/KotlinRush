@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinrush.R
 import com.example.kotlinrush.model.Animal
 
-class AnimalAdapter() : RecyclerView.Adapter<AnimalAdapter.MyViewHolder>() {
+class AnimalAdapter : RecyclerView.Adapter<AnimalAdapter.MyViewHolder>() {
 
     private var animalList: List<Animal> = listOf()
 

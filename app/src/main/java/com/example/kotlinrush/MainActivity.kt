@@ -12,8 +12,19 @@ import com.example.kotlinrush.model.Dog
 
 class MainActivity : AppCompatActivity() {
 
+    //TODO:
+    // Добавить на мейн активити FloatingActionButton с иконкой плюсика
+    // по нажатию на нее будет добавляться еще одна собака между аляской и каспером
+    // собака произвольная
     private lateinit var binding: ActivityMainBinding
     private val adapter = AnimalAdapter()
+
+    private val dogToAdd = Dog(
+        height = 179,
+        weight = 120,
+        name = "Жопыч"
+    )
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,43 +38,22 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             recView.layoutManager = LinearLayoutManager(this@MainActivity)
             recView.adapter = adapter
-            adapter.setList(myAnimal())
+            adapter.setList(getMyAnimalsList())
         }
     }
 
-    fun myAnimal(): ArrayList<Animal> {
+    private fun getMyAnimalsList(): ArrayList<Animal> {
         val animals = ArrayList<Animal>()
-
-        val first_sobaka = Dog(30, 65, "Аляска")
-        animals.add(first_sobaka)
-
-        val second_sobaka = Dog(25, 60, "Каспер")
-        animals.add(second_sobaka)
-
-        val third_sobaka = Dog(12, 35, "Бульдог")
-        animals.add(third_sobaka)
-
-        val fourth_sobaka = Dog(13, 36, "Значение_знаешь?")
-        animals.add(fourth_sobaka)
-
-        val fifth_sobaka = Dog(14, 37, "Буль_ДОГ")
-        animals.add(fifth_sobaka)
-
-        val pervaya_koshka = Cat(15, 15, "Домашнич", 8)
-        animals.add(pervaya_koshka)
-
-        val vtoraya_koshka = Cat(10, 12, "Помойнич", 1)
-        animals.add(vtoraya_koshka)
-
-        val tretiya_koshka = Cat(2, 3, "Новорождёныч", 8)
-        animals.add(tretiya_koshka)
-
-        val chetvertaya_koska = Cat(15, 1, "Приведеныч", 0)
-        animals.add(chetvertaya_koska)
-
-        val pyataya_koshka = Cat(12, 14, "Томыч", 3)
-        animals.add(pyataya_koshka)
-
+        animals.add(Dog(30, 65, "Аляска"))
+        animals.add(Dog(25, 60, "Каспер"))
+        animals.add(Dog(12, 35, "Бульдог"))
+        animals.add(Dog(13, 36, "Значение_знаешь?"))
+        animals.add(Dog(14, 37, "Буль_ДОГ"))
+        animals.add(Cat(15, 15, "Домашнич", 8))
+        animals.add(Cat(10, 12, "Помойнич", 1))
+        animals.add(Cat(2, 3, "Новорождёныч", 8))
+        animals.add(Cat(15, 1, "Приведеныч", 0))
+        animals.add(Cat(12, 14, "Томыч", 3))
         return animals
     }
 }
