@@ -1,9 +1,10 @@
 package com.example.kotlinrush
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinrush.adapter.AnimalAdapter
 import com.example.kotlinrush.databinding.ActivityMainBinding
 import com.example.kotlinrush.model.Animal
@@ -13,18 +14,12 @@ import com.example.kotlinrush.model.Dog
 class MainActivity : AppCompatActivity() {
 
     //TODO:
-    // Добавить на мейн активити FloatingActionButton с иконкой плюсика
-    // по нажатию на нее будет добавляться еще одна собака между аляской и каспером
-    // собака произвольная
+    // В inputContainer делаем 3 editText
+    // в функции addItem берем значения из этих инпутов, если они все не пустые создаем Дог и добавляем в список
+    // если хоть одно из полей пустое тост
     private lateinit var binding: ActivityMainBinding
     private val adapter = AnimalAdapter()
-
-    private val dogToAdd = Dog(
-        height = 179,
-        weight = 120,
-        name = "Жопыч"
-    )
-
+    private val animalList: MutableList<Animal> = getMyAnimalsList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +29,21 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
         binding.apply {
             recView.layoutManager = LinearLayoutManager(this@MainActivity)
             recView.adapter = adapter
-            adapter.setList(getMyAnimalsList())
+            adapter.setList(animalList)
+            fab.setOnClickListener {
+                if (binding.nameEdtTxt.text.isNotEmpty()
+                    && binding.heightEdtTxt.text.isNotEmpty()
+                    && binding.weightEdtTxt.text.isNotEmpty()
+                ) {
+                    addItem()
+                } else {
+                    Toast.makeText(this@MainActivity, "please", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -55,5 +60,18 @@ class MainActivity : AppCompatActivity() {
         animals.add(Cat(15, 1, "Приведеныч", 0))
         animals.add(Cat(12, 14, "Томыч", 3))
         return animals
+    }
+
+    private fun addItem() {
+        val name = binding.nameEdtTxt.text.toString()
+        val height = binding.heightEdtTxt.text.toString().toInt()
+        val weight = binding.weightEdtTxt.text.toString().toInt()
+        val dogToAdd = Dog(
+            name = name,
+            weight = weight,
+            height = height
+        )
+        animalList.add(1, dogToAdd)
+        adapter.notifyItemInserted(1)
     }
 }

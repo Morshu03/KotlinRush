@@ -15,7 +15,6 @@ class AnimalAdapter : RecyclerView.Adapter<AnimalAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_animal, parent, false)
-
         return MyViewHolder(view)
     }
 
@@ -33,7 +32,7 @@ class AnimalAdapter : RecyclerView.Adapter<AnimalAdapter.MyViewHolder>() {
         val weightText: TextView = itemView.findViewById(R.id.weight)
     }
 
-    fun setList(newAnimalList: ArrayList<Animal>) {
+    fun setList(newAnimalList: MutableList<Animal>) {
         animalList = newAnimalList
         notifyDataSetChanged()
     }
